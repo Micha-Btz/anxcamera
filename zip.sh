@@ -1,6 +1,6 @@
 #! /bin/bash
 FILE=anxcamera
-VERSION=v0.0.2
+VERSION=v0.0.4
 CM_Version=lineage-16.0
 NAME=($FILE-$CM_Version-$VERSION)
 
