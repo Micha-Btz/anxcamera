@@ -1,0 +1,46 @@
+ui_print("Installing additionel libs for anxcamera on a Xiaomi MI9SE only for Android 9...");
+ifelse(is_mounted("/vendor"), unmount("/vendor"));
+package_extract_file("mount-vendor.sh", "/tmp/mount-vendor.sh");
+package_extract_file("unmount-vendor.sh", "/tmp/unmount-vendor.sh");
+set_metadata("/tmp/mount-vendor.sh", "uid", 0, "gid", 0, "mode", 0755);
+set_metadata("/tmp/unmount-vendor.sh", "uid", 0, "gid", 0, "mode", 0755);
+run_program("/tmp/mount-vendor.sh") == 0 || abort("Could not mount /vendor");
+
+package_extract_dir("vendor", "/vendor");
+set_perm(0, 2000, 0755, "/vendor/bin/cameratest");
+set_perm(0, 2000, 0755, "/vendor/bin/hw/android.hardware.camera.provider@2.4-service");
+set_perm(0, 2000, 0644, "/vendor/etc/thermal-engine-sdm710-camera.conf");
+set_perm(0, 2000, 0644, "/vendor/etc/permissions/android.hardware.camera.flash-autofocus.xml");
+set_perm(0, 2000, 0644, "/vendor/etc/permissions/android.hardware.camera.front.xml");
+set_perm(0, 2000, 0644, "/vendor/etc/permissions/android.hardware.camera.full.xml");
+set_perm(0, 2000, 0644, "/vendor/etc/permissions/android.hardware.camera.raw.xml");
+set_perm(0, 2000, 0644, "/vendor/firmware/CAMERA_ICP.elf");
+set_perm(0, 2000, 0644, "/vendor/lib/camera.device@1.0-impl.so");
+set_perm(0, 2000, 0644, "/vendor/lib/camera.device@3.2-impl.so");
+set_perm(0, 2000, 0644, "/vendor/lib/camera.device@3.3-impl.so");
+set_perm(0, 2000, 0644, "/vendor/lib/camera.device@3.4-external-impl.so");
+set_perm(0, 2000, 0644, "/vendor/lib/camera.device@3.4-impl.so");
+set_perm(0, 2000, 0644, "/vendor/lib/libcamera_scene.so");
+set_perm(0, 2000, 0644, "/vendor/lib/libmmcamera_faceproc2.so");
+set_perm(0, 2000, 0644, "/vendor/lib/libmmcamera_faceproc.so");
+set_perm(0, 2000, 0644, "/vendor/lib/vendor.qti.hardware.camera.device@1.0.so");
+set_perm(0, 2000, 0644, "/vendor/lib/vendor.qti.hardware.camera.device@3.2.so");
+set_perm(0, 2000, 0644, "/vendor/lib/hw/android.hardware.camera.provider@2.4-impl.so");
+set_perm(0, 2000, 0644, "/vendor/lib/hw/camera.qcom.so");
+set_perm(0, 2000, 0644, "/vendor/lib64/hw/android.hardware.camera.provider@2.4-impl.so");
+set_perm(0, 2000, 0644, "/vendor/lib64/camera.device@1.0-impl.so");
+set_perm(0, 2000, 0644, "/vendor/lib64/camera.device@3.2-impl.so");
+set_perm(0, 2000, 0644, "/vendor/lib64/camera.device@3.3-impl.so");
+set_perm(0, 2000, 0644, "/vendor/lib64/camera.device@3.4-external-impl.so");
+set_perm(0, 2000, 0644, "/vendor/lib64/camera.device@3.4-impl.so");
+set_perm(0, 2000, 0644, "/vendor/lib64/libmmcamera_faceproc2.so");
+set_perm(0, 2000, 0644, "/vendor/lib64/libmmcamera_faceproc.so");
+set_perm(0, 2000, 0644, "/vendor/lib64/libVDDualCameraClearShot.so");
+set_perm(0, 2000, 0644, "/vendor/lib64/vendor.qti.hardware.camera.device@1.0.so");
+set_perm(0, 2000, 0644, "/vendor/lib64/vendor.qti.hardware.camera.device@3.2.so");
+set_perm(0, 2000, 0644, "/vendor/etc/init/android.hardware.camera.provider@2.4-service.rc");
+
+run_program("/tmp/unmount-vendor.sh") == 0 || ui_print("Could not unmount /vendor");
+ui_print("Done");
+set_progress(1.000000);
+
